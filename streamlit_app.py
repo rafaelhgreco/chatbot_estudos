@@ -18,16 +18,11 @@ else:
 
     # Configure Google Gemini
     genai.configure(api_key=google_api_key)
-    model = genai.GenerativeModel('gemini-2.0-flash-exp')
-
+    
     # Create a session state variable to store the chat messages. This ensures that the
     # messages persist across reruns.
     if "messages" not in st.session_state:
         st.session_state.messages = []
-    
-    # Initialize chat session
-    if "chat" not in st.session_state:
-        st.session_state.chat = model.start_chat(history=[])
 
     # Display the existing chat messages via `st.chat_message`.
     for message in st.session_state.messages:
@@ -45,7 +40,9 @@ else:
 
         # Generate a response using the Gemini API.
         try:
-            response = st.session_state.chat.send_message(prompt)
+            # Initialize model for each request to avoid session issues
+            model = genai.GenerativeModel('gemini-pro')
+            response = model.generate_content(prompt)
             
             # Display and store the response
             with st.chat_message("assistant"):
