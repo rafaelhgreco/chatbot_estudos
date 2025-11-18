@@ -18,7 +18,7 @@ else:
 
     # Configure Google Gemini
     genai.configure(api_key=google_api_key)
-    model = genai.GenerativeModel('gemini-pro')
+    model = genai.GenerativeModel('gemini-2.0-flash-exp')
 
     # Create a session state variable to store the chat messages. This ensures that the
     # messages persist across reruns.
