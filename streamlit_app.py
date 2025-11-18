@@ -41,7 +41,7 @@ else:
         # Generate a response using the Gemini API.
         try:
             # Initialize model for each request to avoid session issues
-            model = genai.GenerativeModel('gemini-pro')
+            model = genai.GenerativeModel('gemini-1.5-flash-latest')
             response = model.generate_content(prompt)
             
             # Display and store the response
