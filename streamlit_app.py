@@ -18,7 +18,7 @@ else:
 
     # Configure Google Gemini
     genai.configure(api_key=google_api_key)
-    model = genai.GenerativeModel('gemini-2.0-flash-exp')
+    model = genai.GenerativeModel('gemini-1.5-flash')
 
     # Create a session state variable to store the chat messages. This ensures that the
     # messages persist across reruns.
@@ -44,9 +44,21 @@ else:
             st.markdown(prompt)
 
         # Generate a response using the Gemini API.
-        response = st.session_state.chat.send_message(prompt)
-
-        # Display and store the response
-        with st.chat_message("assistant"):
-            st.markdown(response.text)
-        st.session_state.messages.append({"role": "assistant", "content": response.text})
+        try:
+            response = st.session_state.chat.send_message(prompt)
+            
+            # Display and store the response
+            with st.chat_message("assistant"):
+                st.markdown(response.text)
+            st.session_state.messages.append({"role": "assistant", "content": response.text})
+        except Exception as e:
+            error_message = str(e)
+            with st.chat_message("assistant"):
+                if "ResourceExhausted" in error_message or "quota" in error_message.lower():
+                    st.error("⚠️ Limite de uso da API atingido. Por favor, verifique sua quota no Google AI Studio ou tente novamente mais tarde.")
+                elif "API key" in error_message:
+                    st.error("⚠️ Erro com a chave API. Verifique se ela está correta e ativa.")
+                else:
+                    st.error(f"⚠️ Erro ao gerar resposta: {error_message}")
+            # Remove a última mensagem do usuário se houve erro
+            st.session_state.messages.pop()
