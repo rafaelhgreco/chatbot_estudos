@@ -38,7 +38,8 @@ else:
 
         # Generate a response using the Gemini API via REST
         try:
-            url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key={google_api_key}"
+            # Using the specific model version requested by the user
+            url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key={google_api_key}"
             headers = {"Content-Type": "application/json"}
             
             # Prepare conversational history for the API
