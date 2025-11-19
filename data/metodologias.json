@@ -1,0 +1,117 @@
+{
+  "metodologias": {
+    "long-life-learning": {
+      "nome": "Aprendizado Contínuo (Long-life Learning)",
+      "descricao": "Metodologia focada na sustentabilidade do aprendizado ao longo da vida",
+      "caracteristicas": [
+        "Sessões curtas e frequentes (20-40 minutos)",
+        "Revisões espaçadas ao longo do tempo",
+        "Conexão constante com conhecimento prévio",
+        "Aplicação prática em projetos reais",
+        "Foco em hábitos de estudo sustentáveis"
+      ],
+      "ideal_para": "Profissionais que querem aprender continuamente sem burnout",
+      "formato_cronograma": {
+        "divisao": "semanal",
+        "sessoes_por_semana": 5,
+        "duracao_sessao": "30-40 minutos",
+        "revisoes": "Semanais e mensais",
+        "projetos": "1 projeto prático a cada 2 semanas"
+      }
+    },
+    "shoshin": {
+      "nome": "Shoshin (Mente de Principiante)",
+      "descricao": "Abordagem zen de aprendizado com mente aberta e curiosa",
+      "caracteristicas": [
+        "Aprender sem pressupostos ou vieses",
+        "Exploração ativa e experimentação",
+        "Questionar tudo, mesmo o básico",
+        "Aprender fazendo e errando",
+        "Manter curiosidade infantil"
+      ],
+      "ideal_para": "Pessoas mudando de carreira ou aprendendo algo completamente novo",
+      "formato_cronograma": {
+        "divisao": "modular",
+        "abordagem": "exploratoria",
+        "enfase": "Prática desde o dia 1",
+        "projetos": "Múltiplos mini-projetos experimentais",
+        "revisoes": "Reflexões semanais sobre aprendizados"
+      }
+    },
+    "kumon": {
+      "nome": "Kumon (Aprendizado Progressivo)",
+      "descricao": "Método japonês de progressão gradual com domínio completo antes de avançar",
+      "caracteristicas": [
+        "Pequenos passos incrementais",
+        "Repetição com variação progressiva",
+        "Autocorreção e feedback imediato",
+        "Só avança após domínio completo",
+        "Construção sólida de fundamentos"
+      ],
+      "ideal_para": "Iniciantes que querem base sólida e estudantes que precisam de estrutura clara",
+      "formato_cronograma": {
+        "divisao": "niveis_progressivos",
+        "sessoes_por_semana": 6,
+        "duracao_sessao": "45-60 minutos",
+        "exercicios": "Diários com aumento gradual de dificuldade",
+        "avaliacoes": "Teste de nível a cada módulo completado"
+      }
+    },
+    "pomodoro": {
+      "nome": "Pomodoro Technique",
+      "descricao": "Técnica de gestão de tempo com intervalos focados",
+      "caracteristicas": [
+        "Sessões de 25 minutos focadas",
+        "Pausas curtas de 5 minutos",
+        "Pausa longa de 15-30 minutos após 4 pomodoros",
+        "Foco total durante cada pomodoro",
+        "Registro de progresso"
+      ],
+      "ideal_para": "Pessoas com dificuldade de concentração ou que procrastinam",
+      "formato_cronograma": {
+        "divisao": "diaria",
+        "sessoes_por_dia": "4-6 pomodoros",
+        "duracao_sessao": "25 minutos",
+        "pausas": "5 minutos entre / 15-30 minutos a cada 4",
+        "tracking": "Registro diário de pomodoros completados"
+      }
+    },
+    "spaced-repetition": {
+      "nome": "Repetição Espaçada (Spaced Repetition)",
+      "descricao": "Sistema baseado em revisar conteúdo em intervalos crescentes",
+      "caracteristicas": [
+        "Revisões em intervalos otimizados (1 dia, 3 dias, 1 semana, 1 mês)",
+        "Foco em retenção de longo prazo",
+        "Uso de flashcards ou sistemas SRS",
+        "Priorização de conteúdo mais esquecido",
+        "Baseado em ciência cognitiva"
+      ],
+      "ideal_para": "Aprendizado de idiomas, vocabulário técnico, conceitos complexos",
+      "formato_cronograma": {
+        "divisao": "ciclos_de_revisao",
+        "nova_materia": "30% do tempo",
+        "revisoes": "70% do tempo",
+        "ferramentas": "Anki, Quizlet, ou similar",
+        "tracking": "Curva de esquecimento monitorada"
+      }
+    },
+    "feynman": {
+      "nome": "Técnica Feynman",
+      "descricao": "Aprender ensinando e simplificando conceitos complexos",
+      "caracteristicas": [
+        "Estudar um conceito",
+        "Explicar em linguagem simples (como para uma criança)",
+        "Identificar lacunas no entendimento",
+        "Revisar e simplificar ainda mais",
+        "Ensinar ou criar conteúdo"
+      ],
+      "ideal_para": "Conceitos complexos, preparação para ensinar/apresentar",
+      "formato_cronograma": {
+        "divisao": "tematica",
+        "ciclo": "Aprender -> Simplificar -> Ensinar -> Revisar",
+        "outputs": "Artigos, vídeos, ou apresentações",
+        "revisoes": "Após cada explicação criada"
+      }
+    }
+  }
+}
