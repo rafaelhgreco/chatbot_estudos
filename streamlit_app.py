@@ -1,20 +1,26 @@
 import streamlit as st
 import requests
 import json
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Show title and description.
 st.title("💬 Chatbot")
 st.write(
     "Este é um chatbot simples que usa o modelo Gemini do Google para gerar respostas. "
-    "Para usar este app, você precisa fornecer uma API key do Google, que você pode obter [aqui](https://aistudio.google.com/app/apikey). "
 )
 
-# Ask user for their Google API key via `st.text_input`.
-# Alternatively, you can store the API key in `./.streamlit/secrets.toml` and access it
-# via `st.secrets`, see https://docs.streamlit.io/develop/concepts/connections/secrets-management
-google_api_key = st.text_input("Google API Key", type="password")
+# Get API key from environment variable or user input
+google_api_key = os.environ.get("GEMINI_API_KEY", "")
+
+# If no API key in environment, ask user for input
 if not google_api_key:
-    st.info("Por favor, adicione sua chave API do Google para continuar.", icon="🗝️")
+    google_api_key = st.text_input("Google API Key", type="password")
+    if not google_api_key:
+        st.info("Por favor, adicione sua chave API do Google para continuar (ou configure no arquivo .env)", icon="🗝️")
 else:
 
     # Create a session state variable to store the chat messages. This ensures that the
