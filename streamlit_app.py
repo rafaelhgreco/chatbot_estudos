@@ -14,7 +14,11 @@ st.write(
 )
 
 # Get API key from environment variable or user input
-google_api_key = os.environ.get("GEMINI_API_KEY", "")
+# Try Streamlit secrets first (for Streamlit Cloud), then environment variable
+try:
+    google_api_key = st.secrets.get("GEMINI_API_KEY", "")
+except:
+    google_api_key = os.environ.get("GEMINI_API_KEY", "")
 
 # If no API key in environment, ask user for input
 if not google_api_key:
