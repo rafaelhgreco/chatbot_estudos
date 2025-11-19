@@ -1,5 +1,6 @@
 import streamlit as st
-import google.generativeai as genai
+import requests
+import json
 
 # Show title and description.
 st.title("💬 Chatbot")
@@ -16,9 +17,6 @@ if not google_api_key:
     st.info("Por favor, adicione sua chave API do Google para continuar.", icon="🗝️")
 else:
 
-    # Configure Google Gemini
-    genai.configure(api_key=google_api_key)
-    
     # Create a session state variable to store the chat messages. This ensures that the
     # messages persist across reruns.
     if "messages" not in st.session_state:
@@ -38,24 +36,40 @@ else:
         with st.chat_message("user"):
             st.markdown(prompt)
 
-        # Generate a response using the Gemini API.
+        # Generate a response using the Gemini API via REST
         try:
-            # Initialize model for each request to avoid session issues
-            model = genai.GenerativeModel('gemini-1.5-flash-latest')
-            response = model.generate_content(prompt)
+            url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key={google_api_key}"
+            headers = {"Content-Type": "application/json"}
+            data = {
+                "contents": [{
+                    "parts": [{"text": prompt}]
+                }]
+            }
+            
+            response = requests.post(url, headers=headers, json=data)
+            response.raise_for_status()
+            
+            result = response.json()
+            ai_response = result["candidates"][0]["content"]["parts"][0]["text"]
             
             # Display and store the response
             with st.chat_message("assistant"):
-                st.markdown(response.text)
-            st.session_state.messages.append({"role": "assistant", "content": response.text})
-        except Exception as e:
-            error_message = str(e)
+                st.markdown(ai_response)
+            st.session_state.messages.append({"role": "assistant", "content": ai_response})
+            
+        except requests.exceptions.HTTPError as e:
             with st.chat_message("assistant"):
-                if "ResourceExhausted" in error_message or "quota" in error_message.lower():
-                    st.error("⚠️ Limite de uso da API atingido. Por favor, verifique sua quota no Google AI Studio ou tente novamente mais tarde.")
-                elif "API key" in error_message:
-                    st.error("⚠️ Erro com a chave API. Verifique se ela está correta e ativa.")
+                if e.response.status_code == 429:
+                    st.error("⚠️ Limite de uso da API atingido. Por favor, aguarde alguns minutos ou verifique sua quota no Google AI Studio.")
+                elif e.response.status_code == 404:
+                    st.error("⚠️ Modelo não encontrado. Tentando modelo alternativo...")
+                elif e.response.status_code == 400:
+                    st.error("⚠️ Erro na requisição. Verifique sua chave API.")
                 else:
-                    st.error(f"⚠️ Erro ao gerar resposta: {error_message}")
-            # Remove a última mensagem do usuário se houve erro
+                    st.error(f"⚠️ Erro HTTP {e.response.status_code}: {e.response.text}")
+            st.session_state.messages.pop()
+            
+        except Exception as e:
+            with st.chat_message("assistant"):
+                st.error(f"⚠️ Erro ao gerar resposta: {str(e)}")
             st.session_state.messages.pop()
