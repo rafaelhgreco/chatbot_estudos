@@ -40,18 +40,26 @@ else:
         try:
             url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key={google_api_key}"
             headers = {"Content-Type": "application/json"}
-            data = {
-                "contents": [{
-                    "parts": [{"text": prompt}]
-                }]
-            }
+            
+            # Prepare conversational history for the API
+            gemini_history = []
+            for msg in st.session_state.messages:
+                # Map role 'assistant' to 'model' for the Gemini API
+                role = "model" if msg["role"] == "assistant" else "user"
+                gemini_history.append({"role": role, "parts": [{"text": msg["content"]}]})
+
+            data = {"contents": gemini_history}
             
             response = requests.post(url, headers=headers, json=data)
             response.raise_for_status()
             
             result = response.json()
-            ai_response = result["candidates"][0]["content"]["parts"][0]["text"]
-            
+            # Check if 'candidates' key exists and is not empty
+            if "candidates" in result and result["candidates"]:
+                ai_response = result["candidates"][0]["content"]["parts"][0]["text"]
+            else:
+                ai_response = "⚠️ Não foi possível obter uma resposta do modelo. A resposta pode ter sido bloqueada por segurança."
+
             # Display and store the response
             with st.chat_message("assistant"):
                 st.markdown(ai_response)
