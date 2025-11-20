@@ -3,3 +3,5 @@ requests
 python-dotenv
 pydantic
 pytest
+reportlab
+streamlit-js-eval

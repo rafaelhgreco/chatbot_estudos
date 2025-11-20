@@ -11,6 +11,9 @@ Um chatbot inteligente que cria cronogramas de estudo personalizados baseados em
 - 📅 **Cronogramas personalizados** - Adaptados ao seu tempo, prazo e nível de conhecimento
 - 🔄 **Refinamento iterativo** - Ajuste o cronograma com feedback em tempo real
 - 📊 **Acompanhamento de progresso** - Visualize sua jornada de criação do cronograma
+- 💾 **Persistência de histórico** - Histórico salvo no navegador, preservado entre reloads
+- 📥 **Exportação em PDF** - Baixe seus cronogramas em formato PDF profissional
+- 🗑️ **Controle de sessão** - Botões para nova conversa ou limpeza completa
 
 ## 🏗️ Arquitetura
 
@@ -21,7 +24,8 @@ chatbot_estudos/
 │   ├── workflow_manager.py    # Gerenciador de fluxo de conversa
 │   └── prompt_templates.py     # Templates de prompts para Gemini
 ├── utils/
-│   └── validators.py           # Validações de entrada com Pydantic
+│   ├── validators.py           # Validações de entrada com Pydantic
+│   └── export_utils.py         # Funções para exportação de PDF
 ├── data/
 │   └── metodologias.json       # Dados sobre metodologias
 ├── tests/                      # Testes unitários
@@ -86,6 +90,8 @@ streamlit run streamlit_app.py
 - **Google Gemini 2.5 Flash** - Modelo de linguagem
 - **Pydantic** - Validação de dados
 - **python-dotenv** - Gerenciamento de variáveis
+- **ReportLab** - Geração de PDFs
+- **streamlit-js-eval** - Integração com localStorage
 
 ## 📝 Desenvolvimento
 
@@ -110,6 +116,7 @@ Refinando (loop) → Aprovado
 
 - [Planejamento Completo](PLANEJAMENTO.md) - Análise BDD e arquitetura detalhada
 - [Metodologias](data/metodologias.json) - Descrição completa das metodologias
+- [Novas Funcionalidades](NOVAS_FUNCIONALIDADES.md) - Persistência e exportação de PDF
 
 ## 🤝 Contribuindo
 
