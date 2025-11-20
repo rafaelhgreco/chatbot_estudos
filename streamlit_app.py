@@ -3,8 +3,6 @@ import requests
 import json
 import os
 from dotenv import load_dotenv
-from streamlit.components.v1 import html
-import base64
 from datetime import datetime
 
 # Importar módulos do projeto
@@ -15,79 +13,6 @@ from utils.export_utils import gerar_pdf_cronograma, sanitizar_nome_arquivo
 
 # Load environment variables from .env file
 load_dotenv()
-
-
-# ============================================================================
-# FUNÇÕES DE LOCALSTORAGE
-# ============================================================================
-
-def salvar_historico_localStorage(messages: list):
-    """
-    Salva o histórico de mensagens no localStorage do navegador.
-    """
-    messages_json = json.dumps(messages)
-    messages_encoded = base64.b64encode(messages_json.encode()).decode()
-    
-    js_code = f"""
-    <script>
-        localStorage.setItem('chatbot_historico', '{messages_encoded}');
-    </script>
-    """
-    html(js_code, height=0)
-
-
-def carregar_historico_localStorage():
-    """
-    Carrega o histórico de mensagens do localStorage do navegador.
-    Retorna None se não houver histórico.
-    """
-    js_code = """
-    <script>
-        const historico = localStorage.getItem('chatbot_historico');
-        if (historico) {
-            window.parent.postMessage({type: 'streamlit:setComponentValue', value: historico}, '*');
-        } else {
-            window.parent.postMessage({type: 'streamlit:setComponentValue', value: null}, '*');
-        }
-    </script>
-    """
-    historico_encoded = html(js_code, height=0)
-    
-    if historico_encoded:
-        try:
-            messages_json = base64.b64decode(historico_encoded).decode()
-            return json.loads(messages_json)
-        except:
-            return None
-    return None
-
-
-def limpar_historico_localStorage():
-    """
-    Remove o histórico de mensagens do localStorage.
-    """
-    js_code = """
-    <script>
-        localStorage.removeItem('chatbot_historico');
-        localStorage.removeItem('chatbot_workflow');
-    </script>
-    """
-    html(js_code, height=0)
-
-
-def salvar_workflow_localStorage(workflow_data: dict):
-    """
-    Salva o estado do workflow no localStorage.
-    """
-    workflow_json = json.dumps(workflow_data)
-    workflow_encoded = base64.b64encode(workflow_json.encode()).decode()
-    
-    js_code = f"""
-    <script>
-        localStorage.setItem('chatbot_workflow', '{workflow_encoded}');
-    </script>
-    """
-    html(js_code, height=0)
 
 
 # ============================================================================
@@ -281,9 +206,6 @@ def processar_mensagem_usuario(mensagem: str, api_key: str):
                 st.markdown(resposta)
                 st.session_state.messages.append({"role": "assistant", "content": resposta})
         
-        # Salvar histórico no localStorage após qualquer atualização
-        salvar_historico_localStorage(st.session_state.messages)
-        
         st.rerun()
 
 
@@ -394,24 +316,11 @@ else:
         
         st.divider()
         
-        # Botões de ação
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            if st.button("🔄 Nova Conversa", use_container_width=True):
-                st.session_state.workflow.resetar()
-                st.session_state.messages = []
-                st.rerun()
-        
-        with col2:
-            if st.button("🗑️ Limpar Tudo", use_container_width=True, type="primary"):
-                # Limpar localStorage
-                limpar_historico_localStorage()
-                # Resetar session state
-                st.session_state.workflow.resetar()
-                st.session_state.messages = []
-                st.success("✅ Histórico limpo!")
-                st.rerun()
+        # Botão de ação
+        if st.button("🔄 Nova Conversa", use_container_width=True):
+            st.session_state.workflow.resetar()
+            st.session_state.messages = []
+            st.rerun()
     
     # Se primeira vez, enviar mensagem de boas-vindas
     if len(st.session_state.messages) == 0:
