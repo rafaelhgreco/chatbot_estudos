@@ -4,6 +4,13 @@ Um chatbot inteligente que cria cronogramas de estudo personalizados baseados em
 
 [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://chatbot-estudos.streamlit.app/)
 
+## 📖 Documentação
+
+- 🚀 **[GUIA_RAPIDO.md](GUIA_RAPIDO.md)** - Como instalar e usar o chatbot
+- 📋 **[DOCUMENTACAO_COMPLETA.md](DOCUMENTACAO_COMPLETA.md)** - Documentação técnica detalhada com passo a passo de criação
+- 🎬 **[APRESENTACAO.md](APRESENTACAO.md)** - Slides para apresentação do projeto
+- 📝 **[CHANGELOG.md](CHANGELOG.md)** - Histórico de mudanças
+
 ## 🎯 Funcionalidades
 
 - 📝 **Coleta interativa de requisitos** - Conversa natural para entender seus objetivos
@@ -11,9 +18,8 @@ Um chatbot inteligente que cria cronogramas de estudo personalizados baseados em
 - 📅 **Cronogramas personalizados** - Adaptados ao seu tempo, prazo e nível de conhecimento
 - 🔄 **Refinamento iterativo** - Ajuste o cronograma com feedback em tempo real
 - 📊 **Acompanhamento de progresso** - Visualize sua jornada de criação do cronograma
-- 💾 **Persistência de histórico** - Histórico salvo no navegador, preservado entre reloads
 - 📥 **Exportação em PDF** - Baixe seus cronogramas em formato PDF profissional
-- 🗑️ **Controle de sessão** - Botões para nova conversa ou limpeza completa
+- 🗑️ **Controle de sessão** - Botão para iniciar nova conversa
 
 ## 🏗️ Arquitetura
 
