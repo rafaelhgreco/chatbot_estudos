@@ -70,47 +70,6 @@ Muitas pessoas enfrentam dificuldades:
 
 ---
 
-## 💻 Demonstração - Roteiro
-
-### Passo 1: Iniciar Conversa
-```
-🤖 Bot: Olá! Qual tema você gostaria de estudar?
-👤 Você: Python para Data Science
-```
-
-### Passo 2: Escolher Metodologia
-```
-🤖 Bot: [Apresenta 6 metodologias]
-👤 Você: Pomodoro
-```
-
-### Passo 3: Informar Detalhes
-```
-🤖 Bot: Quanto tempo disponível por dia?
-👤 Você: 2 horas
-
-🤖 Bot: Qual seu prazo?
-👤 Você: 3 meses
-
-🤖 Bot: Qual seu nível atual?
-👤 Você: Iniciante
-```
-
-### Passo 4: Receber Cronograma
-```
-🤖 Bot: [Gera cronograma detalhado]
-- Semana 1: Fundamentos Python
-- Semana 2: NumPy e Pandas
-- Semana 3: Matplotlib e Visualização
-...
-```
-
-### Passo 5: Exportar PDF
-```
-📊 Sidebar → 💾 Exportar → 📥 Baixar PDF
-```
-
----
 
 ## 🏗️ Slide 4: Arquitetura
 
@@ -137,22 +96,6 @@ Muitas pessoas enfrentam dificuldades:
 │          Exportação                 │
 │      ReportLab (PDF)                │
 └─────────────────────────────────────┘
-```
-
-### Estrutura de Arquivos
-
-```
-chatbot_estudos/
-├── streamlit_app.py          # 🎯 Interface principal
-├── modules/
-│   ├── workflow_manager.py   # 🔄 Controle de estados
-│   └── prompt_templates.py   # 📝 Templates de prompts
-├── utils/
-│   ├── validators.py         # ✅ Validações
-│   └── export_utils.py       # 📄 Exportação PDF
-├── data/
-│   └── metodologias.json     # 📚 Dados de metodologias
-└── tests/                    # 🧪 Testes unitários
 ```
 
 ---
@@ -232,26 +175,7 @@ Status: ✅ Aplicando no trabalho
 
 ---
 
-## 📈 Slide 8: Roadmap Futuro
-
-### Versão 2.0 (Próximos 3 meses)
-
-- 🗄️ **Banco de Dados** → Persistir múltiplos históricos
-- 👤 **Sistema de Login** → Perfis de usuário
-- 📊 **Dashboard** → Acompanhamento visual de progresso
-- 🔔 **Lembretes** → Notificações de revisão
-
-### Versão 3.0 (Visão de 1 ano)
-
-- 📱 **App Mobile** → iOS e Android
-- 🤝 **Integração Calendários** → Google Calendar, Outlook
-- 🎯 **Gamificação** → Pontos, badges, streaks
-- 👥 **Comunidade** → Grupos de estudo
-- 🌐 **Multi-idioma** → Inglês, espanhol
-
----
-
-## 🎓 Slide 9: Aprendizados
+## 🎓 Slide 8: Aprendizados
 
 ### Principais Lições do Projeto
 
@@ -287,7 +211,7 @@ class EstadoConversa(Enum):
 
 ---
 
-## 🎯 Slide 10: Finalização
+## 🎯 Slide 9: Finalização
 
 ### Resultados Alcançados
 
@@ -315,7 +239,7 @@ class EstadoConversa(Enum):
 
 ---
 
-## 🙏 Slide 11: Agradecimentos
+## 🙏 Slide 10: Agradecimentos
 
 ### Experimente Agora!
 
